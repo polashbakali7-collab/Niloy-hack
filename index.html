@@ -1,0 +1,421 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>☠️NILOY KOP HACK☠️</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* --- DYNAMIC THEME --- */
+:root {
+  --neon-color: #00ffff; /* Changed to cyan/blue */
+}
+
+* { margin:0; padding:0; box-sizing:border-box; user-select: none; }
+html, body { height:100%; overflow: hidden; font-family:'Outfit',sans-serif; background:#000; }
+
+/* Background Game */
+iframe {
+  position:fixed; top:0; left:0; width:100%; height:100%; border:none; z-index:0;
+}
+
+/* --- LOGIN POPUP (OVERLAY) --- */
+.password-overlay {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0, 0, 0, 0.90);
+  backdrop-filter:blur(10px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.login-box {
+  background: #0a0a0a;
+  border: 2px solid var(--neon-color);
+  padding: 30px;
+  border-radius: 20px;
+  width: 85%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 0 30px var(--neon-color), inset 0 0 10px var(--neon-color);
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--neon-color);
+  margin-bottom: 15px;
+  object-fit: cover;
+  box-shadow: 0 0 15px var(--neon-color);
+  background: #000;
+}
+
+.hack-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px var(--neon-color);
+}
+
+.pass-input {
+  width: 100%;
+  padding: 12px;
+  background: #000;
+  border: 1px solid var(--neon-color);
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.pass-input:focus {
+  box-shadow: 0 0 15px var(--neon-color);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--neon-color);
+  color: #000;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+  box-shadow: 0 0 10px var(--neon-color);
+}
+
+.login-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--neon-color);
+}
+
+.error-msg {
+  color: #ff3333;
+  margin-top: 10px;
+  font-size: 14px;
+  min-height: 20px;
+  font-weight: bold;
+}
+
+/* --- PREDICTION BOX (DRAGGABLE POPUP) --- */
+.prediction-box {
+  position: absolute; top: 100px; left: 20px;
+  width: 200px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid var(--neon-color);
+  border-radius: 15px;
+  padding: 15px;
+  z-index: 100;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8), 0 0 10px var(--neon-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: grab;
+  transition: box-shadow 0.3s;
+}
+
+.prediction-box:active { cursor: grabbing; }
+
+.box-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 8px;
+}
+
+.mini-profile {
+  width: 35px; height: 35px;
+  border-radius: 50%;
+  border: 1px solid var(--neon-color);
+}
+
+.box-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--neon-color);
+  text-transform: uppercase;
+}
+
+.timer-badge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #FFD700;
+  margin-bottom: 10px;
+  border: 1px solid var(--neon-color);
+}
+
+.result-display {
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 10px 0;
+  text-shadow: 0 0 10px;
+  padding: 5px 15px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+.big { color: #00ff88; text-shadow: 0 0 15px #00ff88; border: 1px solid rgba(0,255,136,0.3); }
+.small { color: #ff3333; text-shadow: 0 0 15px #ff3333; border: 1px solid rgba(255,51,51,0.3); }
+.wait { color: #aaa; }
+
+.balls-row {
+  display: flex; gap: 10px; margin-bottom: 15px; margin-top: 5px;
+}
+
+.ball {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--neon-color);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: bold;
+  background: radial-gradient(circle, var(--neon-color) 0%, #000 90%);
+  box-shadow: 0 0 5px var(--neon-color);
+}
+
+.tg-btn {
+  background: linear-gradient(90deg, #0088cc, #00aced);
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,136,204,0.5);
+}
+
+/* Animations */
+@keyframes popIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Game -->
+<iframe id="bgFrame" src="https://dkwin9.com/#/register?invitationCode=278721622887"></iframe>
+
+<!-- Login Overlay -->
+<div id="loginOverlay" class="password-overlay">
+  <div class="login-box">
+    <img id="loginProfile" src="https://i.ibb.co.com/cXg1fGdv/IMG-20260204-225453-827.jpg" alt="IMG-20260204-225453-827" class="profile-img">
+    <div id="loginTitle" class="hack-title">☠️NILOY KOP HACK☠️</div>
+    <input type="password" id="passInput" class="pass-input" placeholder="Password" autocomplete="off">
+    <button id="loginBtn" class="login-btn">LOGIN NOW</button>
+    <div id="errorMsg" class="error-msg"></div>
+  </div>
+</div>
+
+<!-- Prediction Box -->
+<div id="predBox" class="prediction-box" style="display:none;"> 
+  <div class="box-header">
+    <img id="boxProfile" src="" class="mini-profile">
+    <div id="boxTitle" class="box-title">AI</div>
+    <div style="margin-left:auto; color:var(--neon-color); cursor:pointer;" id="lockBtn">🔥</div>
+  </div>
+
+  <div class="timer-badge">TIME: <span id="timer">--</span>s</div>
+  
+  <div id="result" class="result-display wait">WAIT</div>
+  
+  <div class="balls-row">
+    <div id="n1" class="ball">-</div>
+    <div id="n2" class="ball">-</div>
+  </div>
+
+  <!-- Telegram link is now hardcoded -->
+  <a id="tgLink" href="https://t.me/MS_OFFICIAL_BIG_COMMUNITY" target="_blank" class="tg-btn">JOIN TELEGRAM</a>
+</div>
+
+<!-- FIREBASE & LOGIC SCRIPT -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBliQdkfIMVaZB3GAqNOmV3vp7pQ39DJZQ",
+    authDomain: "brand-ggg-private.firebaseapp.com",
+    databaseURL: "https://brand-ggg-private-default-rtdb.firebaseio.com",
+    projectId: "brand-ggg-private",
+    storageBucket: "brand-ggg-private.firebasestorage.app",
+    messagingSenderId: "338852562690",
+    appId: "1:338852562690:web:bf482c267ec5c8e837a41b",
+    measurementId: "G-H92LB1Z3FQ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  
+  // App State
+  let serverData = {
+    password: "65", // Set password to 65
+    color: "#00ffff", // Set color to cyan
+    name: "☠️𝑰𝑹𝑭𝑨𝑵 𝑽𝑰𝑷 𝑲𝑶𝑷☠️" // Default name
+  };
+  let isDragging = false;
+  
+  // --- 1. FIREBASE REALTIME LISTENER ---
+  const settingsRef = ref(db, 'settings');
+  onValue(settingsRef, (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+      serverData = data;
+      // Override with our local values
+      serverData.password = "65";
+      serverData.color = "#00ffff";
+      serverData.name = "☠️𝑰𝑹𝑭𝑨𝑵 𝑽𝑰𝑷 𝑲𝑶𝑷☠️"; // Ensure name is always this
+      updateUI(serverData);
+    }
+  });
+
+  function updateUI(data) {
+    // Colors
+    document.documentElement.style.setProperty('--neon-color', data.color || '#00ffff');
+    
+    // Background - Using hardcoded link
+    const frame = document.getElementById('bgFrame');
+    const gameLink = "https://dkwin9.com/#/register?invitationCode=278721622887";
+    if(frame.src !== gameLink) frame.src = gameLink;
+
+    // Login Box
+    document.getElementById('loginTitle').textContent = data.name || "☠️𝑰𝑹𝑭𝑨𝑵 𝑽𝑰𝑷 𝑲𝑶𝑷☠️";
+    document.getElementById('loginProfile').src = data.image;
+    
+    // Pred Box
+    document.getElementById('boxTitle').textContent = data.name || "☠️𝑰𝑹𝑭𝑨𝑵 𝑽𝑰𝑷 𝑲𝑶𝑷☠️";
+    document.getElementById('boxProfile').src = data.image;
+    
+    // Telegram Link - Using hardcoded link
+    document.getElementById('tgLink').href = "https://t.me/GX_BIG_COMMUNITY";
+  }
+
+  // --- 2. LOGIN SYSTEM ---
+  const loginOverlay = document.getElementById('loginOverlay');
+  const passInput = document.getElementById('passInput');
+  const loginBtn = document.getElementById('loginBtn');
+  const errorMsg = document.getElementById('errorMsg');
+
+  // Check Session
+  if(sessionStorage.getItem('unlocked') === 'true') {
+    loginOverlay.style.display = 'none';
+    document.getElementById('predBox').style.display = 'flex';
+    startAI();
+  }
+
+  loginBtn.addEventListener('click', checkPass);
+  passInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') checkPass() });
+
+  function checkPass() {
+    // Check against our hardcoded password "420"
+    if(passInput.value === "NILOY420") {
+      loginOverlay.style.display = 'none';
+      document.getElementById('predBox').style.display = 'flex';
+      sessionStorage.setItem('unlocked', 'true');
+      startAI();
+    } else {
+      errorMsg.textContent = "WRONG PASSWORD!";
+      passInput.value = "";
+      document.querySelector('.login-box').style.animation = 'shake 0.4s';
+      setTimeout(()=> document.querySelector('.login-box').style.animation = '', 400);
+    }
+  }
+
+  document.getElementById('lockBtn').addEventListener('click', () => {
+    sessionStorage.removeItem('unlocked');
+    location.reload();
+  });
+
+  // --- 3. DRAG SYSTEM ---
+  const box = document.getElementById('predBox');
+  let startX, startY, initLeft, initTop;
+
+  box.addEventListener('mousedown', startDrag);
+  box.addEventListener('touchstart', startDrag, {passive:false});
+
+  function startDrag(e) {
+    if(e.target.closest('a') || e.target.id === 'lockBtn') return;
+    isDragging = true;
+    const evt = e.touches ? e.touches[0] : e;
+    startX = evt.clientX; startY = evt.clientY;
+    initLeft = box.offsetLeft; initTop = box.offsetTop;
+    box.style.cursor = 'grabbing';
+  }
+
+  window.addEventListener('mousemove', moveDrag);
+  window.addEventListener('touchmove', moveDrag, {passive:false});
+
+  function moveDrag(e) {
+    if(!isDragging) return;
+    const evt = e.touches ? e.touches[0] : e;
+    box.style.left = (initLeft + (evt.clientX - startX)) + 'px';
+    box.style.top = (initTop + (evt.clientY - startY)) + 'px';
+  }
+
+  window.addEventListener('mouseup', () => { isDragging=false; box.style.cursor='grab'; });
+  window.addEventListener('touchend', () => { isDragging=false; });
+
+  // --- 4. PREDICTION LOGIC ---
+  function startAI() {
+    const api = "https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json";
+    let lastIssue = null;
+    const resEl = document.getElementById('result');
+    const n1El = document.getElementById('n1');
+    const n2El = document.getElementById('n2');
+
+    setInterval(async () => {
+      // Timer
+      let s = new Date().getSeconds();
+      document.getElementById('timer').textContent = 30 - (s % 30);
+
+      try {
+        let res = await fetch(api + '?t=' + Date.now());
+        let json = await res.json();
+        let curIssue = json.data.list[0].issueNumber;
+
+        if(lastIssue !== curIssue) {
+          lastIssue = curIssue;
+          resEl.className = "result-display wait";
+          resEl.textContent = "CHECKING...";
+          n1El.textContent = "-"; n2El.textContent = "-";
+          
+          setTimeout(() => {
+            const isBig = Math.random() > 0.5;
+            const r = (min,max) => Math.floor(Math.random()*(max-min+1)+min);
+            
+            resEl.textContent = isBig ? "BIG" : "SMALL";
+            resEl.className = isBig ? "result-display big" : "result-display small";
+            n1El.textContent = isBig ? r(5,9) : r(0,4);
+            n2El.textContent = isBig ? r(5,9) : r(0,4);
+          }, 2000);
+        }
+      } catch(e) {}
+    }, 1000);
+  }
+</script>
+</body>
+</html>
